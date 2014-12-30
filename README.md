@@ -30,7 +30,7 @@ Drag&Drop repository folder to your project in XCode.
 
 1. Add repository as submodule of your project typing in your `Classes` folder:
 ```
-git submodule add https://github.com/vedi/admob-bunch-cocos2dx.git admob-bunch
+git submodule add https://github.com/smallkot/admob-bunch-cocos2dx.git admob-bunch
 ```
 2. Create static links for jars in `proj.android/libs` instead of copying:
 ```
