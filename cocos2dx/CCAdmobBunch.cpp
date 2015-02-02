@@ -1,9 +1,9 @@
 //
-// Created by Konstantin Poznyak on 20/12/14.
+// Created by Shubin Fedor on 16/10/14.
 //
 
 #include "CCAdmobBunch.h"
-#include "CCPlatformDefine.h"
+//#include "CCPlatformDefine.h"
 #include "CCBunchManager.h"
 #include "CCNativeGateway.h"
 
@@ -12,7 +12,7 @@
 static CCAdmobBunch *INSTANCE = nullptr;
 
 CCAdmobBunch *CCAdmobBunch::getInstance() {
-    CC_ASSERT(INSTANCE);
+    //CC_ASSERT(INSTANCE);
     return INSTANCE;
 }
 
@@ -30,13 +30,11 @@ bool CCAdmobBunch::initialize() {
     }
 }
 
-void CCAdmobBunch::createBanner(const char *adUnitID, long adSizeBanner, double mX , double mY){
+void CCAdmobBunch::createBanner(const char *adUnitID, long adSizeBanner){
     rapidjson::Document dict = rapidjson::Document();
     dict.SetObject();
     dict.AddMember("adUnitID", adUnitID, dict.GetAllocator());
     dict.AddMember("adSizeBanner", (double)adSizeBanner, dict.GetAllocator());
-    dict.AddMember("mX", mX, dict.GetAllocator());
-    dict.AddMember("mY", mY, dict.GetAllocator());
     CCNativeGateway::dispatch(
             BUNCH,
             "createBanner",
@@ -44,11 +42,28 @@ void CCAdmobBunch::createBanner(const char *adUnitID, long adSizeBanner, double 
     );
 }
 
-void CCAdmobBunch::showBanner(){
+void CCAdmobBunch::showBanner(double mX, double mY, double mWidth, double mHeight, int mGravity){
     rapidjson::Document dict = rapidjson::Document();
+    dict.SetObject();
+    dict.AddMember("mX", mX, dict.GetAllocator());
+    dict.AddMember("mY", mY, dict.GetAllocator());
+    dict.AddMember("mWidth", mWidth, dict.GetAllocator());
+    dict.AddMember("mHeight", mHeight, dict.GetAllocator());
+    dict.AddMember("mGravity", mGravity, dict.GetAllocator());
+    
     CCNativeGateway::dispatch(
                               BUNCH,
                               "showBanner",
+                              dict
+                              );
+}
+
+void CCAdmobBunch::hideBanner(){
+    rapidjson::Document dict = rapidjson::Document();
+    dict.SetObject();
+    CCNativeGateway::dispatch(
+                              BUNCH,
+                              "hideBanner",
                               dict
                               );
 }
@@ -66,6 +81,7 @@ void CCAdmobBunch::createInterstitial(const char *adUnitID){
 
 void CCAdmobBunch::showInterstitial(){
     rapidjson::Document dict = rapidjson::Document();
+    dict.SetObject();
     CCNativeGateway::dispatch(
                               BUNCH,
                               "showInterstitial",
