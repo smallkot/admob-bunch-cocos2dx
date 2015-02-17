@@ -68,6 +68,7 @@ Show banner
 ```cpp
 CCAdmobBunch::getInstance()->showBanner(0, 0, Director::getInstance()->getWinSize().width, Director::getInstance()->getWinSize().height, kBannerGravityBottomCenter);
 ```
+If gravity is kBannerGravityNone the first two parameters are responsible for filling the banner.
 
 Hide banner
 ```cpp
