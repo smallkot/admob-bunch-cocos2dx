@@ -47,11 +47,41 @@ android.library.reference.2=../android_deps/google-play-services_lib
 
 ### Configuration
 
-Initialize AdmobBunch with your api key:
+Initialize AdmobBunch:
+
 ```cpp
 #include "CCAdmobBunch.h"
 ...
 CCAdmobBunch::initialize();
+```
+
+### Banner
+Create banner
+```cpp
+#include "CCAdmobBunch.h"
+...
+CCAdmobBunch::createBanner("ca-app-pub-......", aGADAdSizeBanner);
+```
+The banner is created only once at the start of the game.
+
+Show banner
+```cpp
+CCAdmobBunch::getInstance()->showBanner(0, 0, Director::getInstance()->getWinSize().width, Director::getInstance()->getWinSize().height, kBannerGravityBottomCenter);
+```
+
+Hide banner
+```cpp
+CCAdmobBunch::getInstance()->hideBanner();
+```
+
+### Interstitial
+Create interstitial
+```cpp
+CCAdmobBunch::getInstance()->createInterstitial("ca-app-pub-65......");
+```
+Show interstitial
+```cpp
+CCAdmobBunch::getInstance()->showInterstitial();
 ```
 
 ### What's the next
