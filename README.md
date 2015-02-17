@@ -25,7 +25,18 @@ Drag&Drop repository folder to your project in XCode.
 1. In `Android.mk` of your project include files from `cocos2dx` folder to your sources,
 2. Add jar-files from `android` folder to `libs` of your project.
 3. Add `google-play-services_lib` from `android` folder as dependency of your project.
-
+4. Add in AndroidManifest.xml
+```
+<application>
+...
+  <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+  <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+...
+</application>
+...
+<uses-permission android:name="android.permission.INTERNET"/>
+```
 ### General Hints
 
 1. Add repository as submodule of your project typing in your `Classes` folder:
